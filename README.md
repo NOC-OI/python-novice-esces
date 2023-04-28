@@ -4,7 +4,7 @@
 [![Create a Slack Account with us][create_slack_svg]][slack_heroku_invite]
 [![Slack Status][slack_channel_status]][slack_channel_url]
 
-An introduction to Python for non-programmers using inflammation data.
+An introduction to Python for non-programmers using oceanography data.
 
 ## About the Lesson
 
