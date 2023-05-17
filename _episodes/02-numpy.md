@@ -455,7 +455,7 @@ Wave height standard deviation: 1.1440155050316319
 > Instead, we need to use the NumPy function `nanmean`:
 >
 > ~~~
-> data = numpy.array([[1,2,3],[1,numpy.NaN,3],[1,2,3]])
+> data_nan = numpy.array([[1,2,3],[1,numpy.NaN,3],[1,2,3]])
 > numpy.nanmean(data_nan)
 > ~~~
 > {: .language-python}
