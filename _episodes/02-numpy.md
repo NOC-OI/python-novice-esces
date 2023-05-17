@@ -576,7 +576,7 @@ As a quick check,
 we can ask this array what its shape is:
 
 ~~~
-print(numpy.mean(data, axis=0).shape)
+print(numpy.mean(reshaped_data, axis=0).shape)
 ~~~
 {: .language-python}
 
