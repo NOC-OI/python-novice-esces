@@ -696,7 +696,7 @@ which is the average wave height per month across all years.
 > > ## Solution
 > > ~~~
 > > array([], shape=(0, 0), dtype=float64)
-> > array([], shape=(0, 40), dtype=float64)
+> > array([], shape=(0, 3), dtype=float64)
 > > ~~~
 > > {: .output}
 > {: .solution}
