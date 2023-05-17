@@ -708,8 +708,6 @@ which is the average wave height per month across all years.
 > using NumPy's `vstack` and `hstack` functions for vertical and horizontal stacking, respectively.
 >
 > ~~~
-> import numpy
->
 > A = numpy.array([[1,2,3], [4,5,6], [7, 8, 9]])
 > print('A = ')
 > print(A)
