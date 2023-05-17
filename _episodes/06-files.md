@@ -225,7 +225,7 @@ look at summary statistics and aggregate values from tabular data to come to the
 
 > ## Plotting Differences
 >
-> Plot the difference between the average monthly waveheights in the 1980s and 1990s
+> Plot the difference between the average monthly waveheights in the 1980s and 1990s.
 > Can you do this using glob, without specifying the filenames explicitly in the code?
 >
 > > ## Solution
