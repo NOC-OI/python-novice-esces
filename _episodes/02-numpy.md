@@ -442,8 +442,8 @@ Wave height standard deviation: 1.1440155050316319
 > However, we can't use NumPy's normal statistical functions on any array that contains a NaN, as this returns a NaN:
 > 
 > ~~~
-> data = numpy.array([[1,2,3],[1,numpy.NaN,3],[1,2,3]])
-> numpy.mean(data)
+> data_nan = numpy.array([[1,2,3],[1,numpy.NaN,3],[1,2,3]])
+> numpy.mean(data_nan)
 > ~~~
 > {: .language-python}
 >
@@ -456,7 +456,7 @@ Wave height standard deviation: 1.1440155050316319
 >
 > ~~~
 > data = numpy.array([[1,2,3],[1,numpy.NaN,3],[1,2,3]])
-> numpy.nanmean(data)
+> numpy.nanmean(data_nan)
 > ~~~
 > {: .language-python}
 >
@@ -496,9 +496,9 @@ The shape of the reshaped data is:
 We can verify that nothing about the data has changed:
 
 ~~~
-print(f"The maximum value of the reshaped data is: {numpy.max(reshaped)}")
-print(f"The minimum value of the reshaped data is: {numpy.min(reshaped)}")
-print(f"The standard deviation of the reshaped data is: {numpy.std(reshaped)}")
+print(f"The maximum value of the reshaped data is: {numpy.max(reshaped_data)}")
+print(f"The minimum value of the reshaped data is: {numpy.min(reshaped_data)}")
+print(f"The standard deviation of the reshaped data is: {numpy.std(reshaped_data)}")
 ~~~
 {: .language-python}
 
@@ -525,7 +525,7 @@ The standard deviation of the reshaped data is: 1.1440155050316319
 > ~~~
 > {: .language-python}
 >
-> F-strings can be used in most cases where we want to print outut with text, but
+> F-strings can be used in most cases where we want to print output with text, but
 > there are some advanced edge-cases where the more verbose [string formatting](https://docs.python.org/3/tutorial/inputoutput.html#the-string-format-method)
 > still needs to be used
 {: .callout}
