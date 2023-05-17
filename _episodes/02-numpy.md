@@ -794,8 +794,8 @@ which is the average wave height per month across all years.
 
 > ## Change In Wave Height
 >
-> In the wave data, one row represents a series of monthly data relating to one year.  This means that
-> the change in height over time is a meaningful concept representing how the wave change seasonally.
+> In the wave data, one row represents a series of monthly data relating to one year. This means that
+> the change in height over time is a meaningful concept representing seasonal changes.
 > Let's find out how to calculate changes in the data contained in an array
 > with NumPy.
 >
