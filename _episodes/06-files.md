@@ -37,7 +37,7 @@ print(glob.glob('waves_*.csv'))
 ~~~
 {: .output}
 
-These files show waveheight data from some years in the decades indicated in the filename. As these examples show,
+These files show waveheight data from some years in the decades indicated in the filename. As this example shows,
 `glob.glob`'s result is a list of file and directory paths in arbitrary order.
 This means we can loop over it
 to do something with each filename in turn.
