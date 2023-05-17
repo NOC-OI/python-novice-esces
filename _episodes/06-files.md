@@ -13,7 +13,7 @@ keypoints:
 ---
 
 When working with real datasets, we may not always have everything in a single file.
-We need a way to get a list of all the files in our `data` directory whose names start with `wave-` and end with `.csv`.
+We need a way to get a list of all the files in our `data` directory whose names start with `wave_` and end with `.csv`.
 The following library will help us to achieve this:
 ~~~
 import glob
