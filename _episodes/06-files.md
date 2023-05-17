@@ -188,8 +188,8 @@ If we had only plotted the reshaped data, we would see white squares where there
 ~~~
 number_of_rows = data.shape[0]
 number_of_years = number_of_rows//12
-
-matplotlib.pyplot.imshow(numpy.reshape(data[:,2], [number_of_years,12]))
+data = numpy.reshape(data[:,2], [number_of_years,12])
+matplotlib.pyplot.imshow(data)
 matplotlib.pyplot.show()
 ~~~
 {: .language-python}
