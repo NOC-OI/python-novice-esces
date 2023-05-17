@@ -68,7 +68,7 @@ matplotlib.pyplot.show()
 
 This is a good way to smooth out variability, and see what is called a 'climatology', representing the long-term wave climate over several years or decades.
 
-Here, we have put the average wave heights per month across all years in the data
+Here, we have put the average wave heights per month across all years in the array
 `ave_waveheight`, then asked `matplotlib.pyplot` to create and display a line graph of those
 values.  The result is a smooth seasonal cycle, with a maximum in month 0 (January) and minimum in month 6 (July). 
 But a good data scientist doesn't just consider the average of a dataset, so let's have a look at two other statistics:
@@ -223,8 +223,8 @@ formats, including SVG, PDF, and JPEG.
 > > ## Solution
 > > We can call `plot` multiple times before we call `show`, and each of those will be added to the axes. We can also
 > > specify format options as a string (this needs to specified straight after the data to plot), with all available options
-> > listed in [the documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html). We also need to specify 
-> > `label`s for each plot, and call `legend()` to make the legend visible. 
+> > listed in [the documentation](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html). We also need to specify the 
+> > `label` for each plot, and call `legend()` to make the legend visible. 
 > >
 > > An example would be
 > >
@@ -343,7 +343,7 @@ matplotlib.pyplot.show()
 
 NetCDF files can be quite complex, and normally consist of a number of variables stored as 2D or 3D arrays. `globaldata["hs_avg"]`
 is getting a variable called *hs_avg*, which is of type `netCDF4._netCDF4.Variable` (the full list of variables stored can be listed with
-`gdata.variables.keys()`). We can use the first element of `globaldata["hs_avg"]` to plot the global map using the `imshow()` function.
+`globaldata.variables.keys()`). We can use the first element of `globaldata["hs_avg"]` to plot the global map using the `imshow()` function.
 Although the type of this element is `numpy.ma.core.MaskedArray`, the `imshow()` function can natively use this variable type as input.
 
 We then need to specify that the data axes of the plot need to go from 0 to 360 on the x-axis, and -90 to 90 on the y-axis. We also use
