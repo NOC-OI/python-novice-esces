@@ -549,7 +549,7 @@ Comments allow programmers to leave explanatory notes for other
 programmers or their future selves.
 
 What if we need the maximum wave height for each month over all years (as in the
-next diagram on the left) or the average for each day (as in the
+next diagram on the left) or the average for each month (as in the
 diagram on the right)? As the diagram below shows, we want to perform the
 operation across an axis:
 
