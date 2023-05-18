@@ -168,7 +168,10 @@ Let's look at our wave data, and find which months we can operate the boats, bas
 We could look at each month individually:
 
 ~~~
-month0 = numpy.mean(data, axis=0)[0] # [0] gets the first element of the array. In our case, the first month: January
+data = numpy.loadtxt(fname='data/wavesmonthly.csv', delimiter=',', skiprows=1)
+reshaped_data = numpy.reshape(data[:,2], [37,12])
+
+month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
     print('Can take passengers this month')
@@ -194,9 +197,7 @@ else:
 Let's test that out for January:
 
 ~~~
-data = numpy.loadtxt(fname='reshaped_data.csv', delimiter=',')
-
-month0 = numpy.mean(data, axis=0)[0]
+month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
     print('Can take passengers this month')
@@ -215,7 +216,7 @@ Can't take any boats out to sea
 Now let's try for June
 
 ~~~
-month5 = numpy.mean(data, axis=0)[5]
+month5 = numpy.mean(reshaped_data, axis=0)[5]
 
 if month5 < 3:
     print('Can take passengers this month')
@@ -236,7 +237,7 @@ Notice how the statement stops as soon as it reaches a condition which is `True`
 We could test for all months less manually, using a `for loop`:
 
 ~~~
-for month_index, monthly_waveheight in enumerate(numpy.mean(r, axis=0)):
+for month_index, monthly_waveheight in enumerate(numpy.mean(reshaped_data, axis=0)):
     if monthly_waveheight < 3:
         print(f"Month {month_index}: we can take passengers this month")
     elif monthly_waveheight < 4:
