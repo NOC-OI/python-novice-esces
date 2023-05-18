@@ -187,7 +187,7 @@ And if neither of these conditions are true, then it's too stormy, and nothing c
 
 ~~~
 else:
-    print('Can't take any boats out to sea')
+    print("Can't take any boats out to sea")
 ~~~
 {: .language-python}
 
