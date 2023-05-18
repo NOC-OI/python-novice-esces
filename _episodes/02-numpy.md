@@ -805,7 +805,7 @@ which is the average wave height per month across all years.
 >
 > ~~~
 > year4 = reshaped_data[3, :]
-> print(year3)
+> print(year4)
 > ~~~
 > {: .language-python}
 >
@@ -824,7 +824,7 @@ which is the average wave height per month across all years.
 > and return the 11 difference values in a new array.
 >
 > ~~~
-> numpy.diff(year3)
+> numpy.diff(year4)
 > ~~~
 > {: .language-python}
 >
