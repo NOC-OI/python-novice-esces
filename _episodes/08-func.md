@@ -32,7 +32,7 @@ keypoints:
 ---
 
 At this point,
-we've written code to draw some interesting features in our inflammation data,
+we've written code to draw some graphs of our wave height data,
 loop over all our data files to quickly draw these plots for each of them,
 and have Python make decisions based on what it sees in our data.
 But, our code is getting pretty long and complicated;
@@ -204,13 +204,15 @@ temperature in Kelvin was: 373.15
 ## Tidying up
 
 Now that we know how to wrap bits of code up in functions,
-we can make our inflammation analysis easier to read and easier to reuse.
+we can make our analysis easier to read and easier to reuse.
 First, let's make a `visualize` function that generates our plots:
 
 ~~~
 def visualize(filename):
 
     data = numpy.loadtxt(fname=filename, delimiter=',')
+    # missing data will break this
+    reshaped_data = numpy.reshape(data[:,2], [10,12])
 
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 
@@ -219,13 +221,13 @@ def visualize(filename):
     axes3 = fig.add_subplot(1, 3, 3)
 
     axes1.set_ylabel('average')
-    axes1.plot(numpy.mean(data, axis=0))
+    axes1.plot(numpy.mean(reshaped_data, axis=0))
 
     axes2.set_ylabel('max')
-    axes2.plot(numpy.max(data, axis=0))
+    axes2.plot(numpy.max(reshaped_data, axis=0))
 
     axes3.set_ylabel('min')
-    axes3.plot(numpy.min(data, axis=0))
+    axes3.plot(numpy.min(reshaped_data, axis=0))
 
     fig.tight_layout()
     matplotlib.pyplot.show()
@@ -239,10 +241,12 @@ we noticed:
 def detect_problems(filename):
 
     data = numpy.loadtxt(fname=filename, delimiter=',')
+    # missing data will break this
+    reshaped_data = numpy.reshape(data[:,2], [10,12])
 
-    if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    if numpy.max(reshaped_data, axis=0)[0] == 0 and numpy.max(reshaped_data, axis=0)[11] == 11:
         print('Suspicious looking maxima!')
-    elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    elif numpy.sum(numpy.min(reshaped_data, axis=0)) == 0:
         print('Minima add up to zero!')
     else:
         print('Seems OK!')
@@ -258,10 +262,15 @@ Notice that rather than jumbling this code together in one giant `for` loop,
 we can now read and reuse both ideas separately.
 We can reproduce the previous analysis with a much simpler `for` loop:
 
-~~~
-filenames = sorted(glob.glob('inflammation*.csv'))
+The 1980s and 2010s datasets have missing data which breaks the upcoming example. 
+To work around this rename each file to match the full year number, e.g. waves_80s.csv to waves_1980s.csv
 
-for filename in filenames[:3]:
+~~~
+import glob
+
+filenames = sorted(glob.glob('waves_*.csv'))
+
+for filename in filenames[1:3]:
     print(filename)
     visualize(filename)
     detect_problems(filename)
@@ -310,19 +319,20 @@ That looks right,
 so let's try `offset_mean` on our real data:
 
 ~~~
-data = numpy.loadtxt(fname='inflammation-01.csv', delimiter=',')
-print(offset_mean(data, 0))
+data = numpy.loadtxt(fname='wavesmonthly.csv', delimiter=',')
+reshaped_data = numpy.reshape(data[:,2], [37,12])
+print(offset_mean(reshaped_data, 0))
 ~~~
 {: .language-python}
 
 ~~~
-[[-6.14875 -6.14875 -5.14875 ... -3.14875 -6.14875 -6.14875]
- [-6.14875 -5.14875 -4.14875 ... -5.14875 -6.14875 -5.14875]
- [-6.14875 -5.14875 -5.14875 ... -4.14875 -5.14875 -5.14875]
+[[ 4.04436937e-01  3.84436937e-01  1.39043694e+00 -5.65563063e-01
+  -6.49563063e-01 -1.29756306e+00 -1.31756306e+00 -1.14756306e+00
+  -6.15630631e-02  1.28436937e-01  9.64436937e-01  1.24443694e+00]
  ...
- [-6.14875 -5.14875 -5.14875 ... -5.14875 -5.14875 -5.14875]
- [-6.14875 -6.14875 -6.14875 ... -6.14875 -4.14875 -6.14875]
- [-6.14875 -6.14875 -5.14875 ... -5.14875 -5.14875 -6.14875]]
+ [ 3.10443694e+00  2.57043694e+00  8.76436937e-01  2.45443694e+00
+   1.49843694e+00  2.94436937e-01 -7.55630631e-02 -5.97563063e-01
+  -6.73563063e-01 -3.37563063e-01  1.23843694e+00  1.66443694e+00]]
 ~~~
 {: .output}
 
@@ -330,8 +340,8 @@ It's hard to tell from the default output whether the result is correct,
 but there are a few tests that we can run to reassure us:
 
 ~~~
-print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
-offset_data = offset_mean(data, 0)
+print('original min, mean, and max are:', numpy.min(reshaped_data), numpy.mean(reshaped_data), numpy.max(reshaped_data))
+offset_data = offset_mean(reshaped_data, 0)
 print('min, mean, and max of offset data are:',
       numpy.min(offset_data),
       numpy.mean(offset_data),
@@ -340,8 +350,8 @@ print('min, mean, and max of offset data are:',
 {: .language-python}
 
 ~~~
-original min, mean, and max are: 0.0 6.14875 20.0
-min, mean, and and max of offset data are: -6.14875 2.84217094304e-16 13.85125
+original min, mean, and max are: 1.496 3.383563063063063 6.956
+min, mean, and max of offset data are: -1.8875630630630629 1.960393809248024e-16 3.5724369369369375
 ~~~
 {: .output}
 
@@ -353,12 +363,12 @@ it's pretty close.
 We can even go further and check that the standard deviation hasn't changed:
 
 ~~~
-print('std dev before and after:', numpy.std(data), numpy.std(offset_data))
+print('std dev before and after:', numpy.std(reshaped_data), numpy.std(offset_data))
 ~~~
 {: .language-python}
 
 ~~~
-std dev before and after: 4.61383319712 4.61383319712
+std dev before and after: 1.1440155050316319 1.144015505031632
 ~~~
 {: .output}
 
@@ -373,7 +383,7 @@ print('difference in standard deviations before and after:',
 {: .language-python}
 
 ~~~
-difference in standard deviations before and after: -3.5527136788e-15
+difference in standard deviations before and after: -2.220446049250313e-16
 ~~~
 {: .output}
 
@@ -468,7 +478,7 @@ In fact,
 we can pass the filename to `loadtxt` without the `fname=`:
 
 ~~~
-numpy.loadtxt('inflammation-01.csv', delimiter=',')
+numpy.loadtxt('wavesmonthly.csv', delimiter=',')
 ~~~
 {: .language-python}
 
@@ -486,7 +496,7 @@ array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
 but we still need to say `delimiter=`:
 
 ~~~
-numpy.loadtxt('inflammation-01.csv', ',')
+numpy.loadtxt('wavesmonthly.csv', ',')
 ~~~
 {: .language-python}
 
@@ -648,7 +658,7 @@ and eight others that do.
 If we call the function like this:
 
 ~~~
-numpy.loadtxt('inflammation-01.csv', ',')
+numpy.loadtxt('wavesmonthly.csv', ',')
 ~~~
 {: .language-python}
 
