@@ -480,6 +480,7 @@ freeing us from having to manually examine every plot for features we've seen be
 >          'multyear_hs_avg.nc']
 > csv_files = []
 > nc_files = []
+> other_files = []
 > ~~~
 > {: .language-python}
 >
@@ -499,6 +500,16 @@ freeing us from having to manually examine every plot for features we've seen be
 >
 > > ## Solution
 > > ~~~
+> > filenames = ['wavesmonthly.csv',
+> >         'waves_00s.csv',
+> >         'waves_10s.csv',
+> >         'waves_80s.csv',
+> >         'waves_90s.csv',
+> >         'multyear_hs_avg.nc']
+> > csv_files = []
+> > nc_files = []
+> > other_files = []
+> >
 > > for filename in filenames:
 > >     if filename.endswith('csv'):
 > >         csv_files.append(filename)
