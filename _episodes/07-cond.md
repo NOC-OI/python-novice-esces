@@ -168,7 +168,10 @@ Let's look at our wave data, and find which months we can operate the boats, bas
 We could look at each month individually:
 
 ~~~
-month0 = numpy.mean(data, axis=0)[0] # [0] gets the first element of the array. In our case, the first month: January
+data = numpy.loadtxt(fname='data/wavesmonthly.csv', delimiter=',', skiprows=1)
+reshaped_data = numpy.reshape(data[:,2], [37,12])
+
+month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
     print('Can take passengers this month')
@@ -178,7 +181,7 @@ if month0 < 3:
 Survey vehicles can operate in stormier waters, with wave heights up to 4m 
 
 ~~~
-elif numpy.mean(data, axis=0) < 4:
+elif month0 < 4:
     print('Can take survey vehicles (but not passengers)')
 ~~~
 {: .language-python}
@@ -187,20 +190,18 @@ And if neither of these conditions are true, then it's too stormy, and nothing c
 
 ~~~
 else:
-    print('Can't take any boats out to sea')
+    print("Can't take any boats out to sea")
 ~~~
 {: .language-python}
 
 Let's test that out for January:
 
 ~~~
-data = numpy.loadtxt(fname='reshaped_data.csv', delimiter=',')
-
-month0 = numpy.mean(data, axis=0)[0]
+month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
     print('Can take passengers this month')
-elif numpy.mean(data, axis=0) < 4:
+elif month0 < 4:
     print('Can take survey vehicles (but not passengers)')
 else:
     print('Can't take any boats out to sea')
@@ -215,11 +216,11 @@ Can't take any boats out to sea
 Now let's try for June
 
 ~~~
-month5 = numpy.mean(data, axis=0)[5]
+month5 = numpy.mean(reshaped_data, axis=0)[5]
 
 if month5 < 3:
     print('Can take passengers this month')
-elif numpy.mean(data, axis=0) < 4:
+elif month5 < 4:
     print('Can take survey vehicles (but not passengers)')
 else:
     print('Can't take any boats out to sea')
@@ -236,7 +237,7 @@ Notice how the statement stops as soon as it reaches a condition which is `True`
 We could test for all months less manually, using a `for loop`:
 
 ~~~
-for month_index, monthly_waveheight in enumerate(numpy.mean(r, axis=0)):
+for month_index, monthly_waveheight in enumerate(numpy.mean(reshaped_data, axis=0)):
     if monthly_waveheight < 3:
         print(f"Month {month_index}: we can take passengers this month")
     elif monthly_waveheight < 4:
@@ -480,6 +481,7 @@ freeing us from having to manually examine every plot for features we've seen be
 >          'multyear_hs_avg.nc']
 > csv_files = []
 > nc_files = []
+> other_files = []
 > ~~~
 > {: .language-python}
 >
@@ -499,6 +501,16 @@ freeing us from having to manually examine every plot for features we've seen be
 >
 > > ## Solution
 > > ~~~
+> > filenames = ['wavesmonthly.csv',
+> >         'waves_00s.csv',
+> >         'waves_10s.csv',
+> >         'waves_80s.csv',
+> >         'waves_90s.csv',
+> >         'multyear_hs_avg.nc']
+> > csv_files = []
+> > nc_files = []
+> > other_files = []
+> >
 > > for filename in filenames:
 > >     if filename.endswith('csv'):
 > >         csv_files.append(filename)
