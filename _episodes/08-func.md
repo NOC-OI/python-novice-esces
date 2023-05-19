@@ -211,8 +211,9 @@ First, let's make a `visualize` function that generates our plots:
 def visualize(filename):
 
     data = numpy.loadtxt(fname=filename, delimiter=',')
-    # missing data will break this
-    reshaped_data = numpy.reshape(data[:,2], [10,12])
+    number_of_rows = data.shape[0] # number of months
+    number_of_years = number_of_rows // 12 # number of years = number of months / number of months per year
+    reshaped_data = numpy.reshape(data[:,2], [number_of_years,12])
 
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 
@@ -241,9 +242,10 @@ we noticed:
 def detect_problems(filename):
 
     data = numpy.loadtxt(fname=filename, delimiter=',')
-    # missing data will break this
-    reshaped_data = numpy.reshape(data[:,2], [10,12])
-
+    number_of_rows = data.shape[0] # number of months
+    number_of_years = number_of_rows // 12 # number of years = number of months / number of months per year
+    reshaped_data = numpy.reshape(data[:,2], [number_of_years,12])
+    
     if numpy.max(reshaped_data, axis=0)[0] == 0 and numpy.max(reshaped_data, axis=0)[11] == 11:
         print('Suspicious looking maxima!')
     elif numpy.sum(numpy.min(reshaped_data, axis=0)) == 0:
@@ -261,9 +263,6 @@ function names usually describe what they do, _e.g._ `visualize`, `detect_proble
 Notice that rather than jumbling this code together in one giant `for` loop,
 we can now read and reuse both ideas separately.
 We can reproduce the previous analysis with a much simpler `for` loop:
-
-The 1980s and 2010s datasets have missing data which breaks the upcoming example. 
-To work around this rename each file to match the full year number, e.g. waves_80s.csv to waves_1980s.csv
 
 ~~~
 import glob
