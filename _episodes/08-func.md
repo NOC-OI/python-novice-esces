@@ -209,10 +209,9 @@ First, let's make a `visualize` function that generates our plots:
 
 ~~~
 def visualize(filename):
-
     data = numpy.loadtxt(fname=filename, delimiter=',')
-    number_of_rows = data.shape[0] # number of months
-    number_of_years = number_of_rows // 12 # number of years = number of months / number of months per year
+    number_of_rows = data.shape[0] # total number of months
+    number_of_years = number_of_rows // 12 # total number of years = number of months / number of months per year
     reshaped_data = numpy.reshape(data[:,2], [number_of_years,12])
 
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
@@ -240,10 +239,9 @@ we noticed:
 
 ~~~
 def detect_problems(filename):
-
     data = numpy.loadtxt(fname=filename, delimiter=',')
-    number_of_rows = data.shape[0] # number of months
-    number_of_years = number_of_rows // 12 # number of years = number of months / number of months per year
+    number_of_rows = data.shape[0] # total number of months
+    number_of_years = number_of_rows // 12 # number of years = total number of months / number of months per year
     reshaped_data = numpy.reshape(data[:,2], [number_of_years,12])
     
     if numpy.max(reshaped_data, axis=0)[0] == 0 and numpy.max(reshaped_data, axis=0)[11] == 11:
