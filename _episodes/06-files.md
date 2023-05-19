@@ -117,7 +117,7 @@ There are differences year on year, and the minimum and maximum data tend to be 
 > ## Different types of division
 >
 > You might have noticed that we calculated the number of years when reshaping the data, rather
-> than using 10 for each decade. This was useful here because the file containing data from the 2010s 
+> than using 10 years for each decade. This was useful here because the file containing data from the 2010s 
 > only has data from 6 years, but each one of these years did contain data for every month. If any year had missing data
 > from any month, we would have needed to have done some additional preprocessing.
 > 
