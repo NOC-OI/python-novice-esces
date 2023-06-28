@@ -174,7 +174,7 @@ reshaped_data = numpy.reshape(data[:,2], [37,12])
 month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
-    print('Can take passengers this month')
+    print("Can take passengers this month")
 ~~~
 {: .language-python}
 
@@ -182,7 +182,7 @@ Survey vehicles can operate in stormier waters, with wave heights up to 4m
 
 ~~~
 elif month0 < 4:
-    print('Can take survey vehicles (but not passengers)')
+    print("Can take survey vehicles (but not passengers)")
 ~~~
 {: .language-python}
 
@@ -200,11 +200,11 @@ Let's test that out for January:
 month0 = numpy.mean(reshaped_data, axis=0)[0]
 
 if month0 < 3:
-    print('Can take passengers this month')
+    print("Can take passengers this month")
 elif month0 < 4:
-    print('Can take survey vehicles (but not passengers)')
+    print("Can take survey vehicles (but not passengers)")
 else:
-    print('Can't take any boats out to sea')
+    print("Can't take any boats out to sea")
 ~~~
 {: .language-python}
 
@@ -219,11 +219,11 @@ Now let's try for June
 month5 = numpy.mean(reshaped_data, axis=0)[5]
 
 if month5 < 3:
-    print('Can take passengers this month')
+    print("Can take passengers this month")
 elif month5 < 4:
-    print('Can take survey vehicles (but not passengers)')
+    print("Can take survey vehicles (but not passengers)")
 else:
-    print('Can't take any boats out to sea')
+    print("Can't take any boats out to sea")
 ~~~
 {: .language-python}
 
