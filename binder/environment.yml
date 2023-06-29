@@ -8,3 +8,7 @@ dependencies:
     - jupyterlab
     - pip
     - python=3.11
+    - numpy
+    - matplotlib-base
+    - matplotlib-inline
+    - netcdf4
