@@ -86,7 +86,7 @@ for filename in filenames:
 {: .language-python}
 
 ~~~
-waves-00.csv
+waves_00.csv
 ~~~
 {: .output}
 
@@ -95,7 +95,7 @@ maximum and minimum waveheight in the 2000s.](
 ../fig/waves_loop_1.svg)
 
 ~~~
-waves-10s.csv
+waves_10s.csv
 ~~~
 {: .output}
 
@@ -103,7 +103,7 @@ waves-10s.csv
 maximum and minimum waveheight in the 2010s.](../fig/waves_loop_2.svg)
 
 ~~~
-waves-80s.csv
+waves_80s.csv
 ~~~
 {: .output}
 
@@ -168,13 +168,14 @@ Let's load `waves_90s.csv`:
 
 ~~~
 data = numpy.loadtxt(fname = "waves_90s.csv", delimiter=',')
+data = numpy.reshape(data[:,2], [10,12])
 ~~~
 {: .language-python}
 
 If we try and take the mean for the entire year, we'll see that there must be NaNs:
 
 ~~~
-numpy.mean(data[:,2])
+numpy.mean(data)
 ~~~
 {: .language-python}
 
@@ -183,7 +184,7 @@ nan
 ~~~
 {: .output}
 
-If we had only plotted the reshaped data, we would see white squares where there are NaNs in the data:
+If we plot the reshaped data, we would see white squares where there are NaNs in the data:
 
 ~~~
 number_of_rows = data.shape[0]

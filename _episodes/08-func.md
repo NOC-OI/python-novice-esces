@@ -32,7 +32,7 @@ keypoints:
 ---
 
 At this point,
-we've written code to draw some graphs of our wave height data,
+we've written code to draw some interesting features in our wave data,
 loop over all our data files to quickly draw these plots for each of them,
 and have Python make decisions based on what it sees in our data.
 But, our code is getting pretty long and complicated;
@@ -204,7 +204,7 @@ temperature in Kelvin was: 373.15
 ## Tidying up
 
 Now that we know how to wrap bits of code up in functions,
-we can make our analysis easier to read and easier to reuse.
+we can make our wave data easier to read and easier to reuse.
 First, let's make a `visualize` function that generates our plots:
 
 ~~~
@@ -212,6 +212,8 @@ def visualize(filename):
     data = numpy.loadtxt(fname=filename, delimiter=',')
     number_of_rows = data.shape[0] # total number of months
     number_of_years = number_of_rows // 12 # total number of years = number of months / number of months per year
+
+    # need to reshape the data for plotting
     reshaped_data = numpy.reshape(data[:,2], [number_of_years,12])
 
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
@@ -234,7 +236,7 @@ def visualize(filename):
 ~~~
 {: .language-python}
 
-and another function called `detect_problems` that checks for those systematics
+<!-- and another function called `detect_problems` that checks for those systematics
 we noticed:
 
 ~~~
@@ -251,26 +253,24 @@ def detect_problems(filename):
     else:
         print('Seems OK!')
 ~~~
-{: .language-python}
+{: .language-python} -->
 
-Wait! Didn't we forget to specify what both of these functions should return? Well, we didn't.
+Wait! Didn't we forget to specify what this function should return? Well, we didn't.
 In Python, functions are not required to include a `return` statement and can be used for
 the sole purpose of grouping together pieces of code that conceptually do one thing. In such cases,
-function names usually describe what they do, _e.g._ `visualize`, `detect_problems`.
+function names usually describe what they do, _e.g._ `visualize`.
 
 Notice that rather than jumbling this code together in one giant `for` loop,
-we can now read and reuse both ideas separately.
+we can now read and reuse the code.
 We can reproduce the previous analysis with a much simpler `for` loop:
 
 ~~~
 import glob
-
 filenames = sorted(glob.glob('waves_*.csv'))
 
 for filename in filenames[1:3]:
     print(filename)
     visualize(filename)
-    detect_problems(filename)
 ~~~
 {: .language-python}
 
@@ -316,8 +316,7 @@ That looks right,
 so let's try `offset_mean` on our real data:
 
 ~~~
-data = numpy.loadtxt(fname='wavesmonthly.csv', delimiter=',')
-reshaped_data = numpy.reshape(data[:,2], [37,12])
+data = numpy.loadtxt(fname='reshaped_data.csv', delimiter=',')
 print(offset_mean(reshaped_data, 0))
 ~~~
 {: .language-python}
@@ -353,8 +352,8 @@ min, mean, and max of offset data are: -1.8875630630630629 1.960393809248024e-16
 {: .output}
 
 That seems almost right:
-the original mean was about 6.1,
-so the lower bound from zero is now about -6.1.
+the original mean was about 1.5,
+so the lower bound from zero is now about -1.9.
 The mean of the offset data isn't quite zero --- we'll explore why not in the challenges --- but
 it's pretty close.
 We can even go further and check that the standard deviation hasn't changed:
@@ -475,25 +474,31 @@ In fact,
 we can pass the filename to `loadtxt` without the `fname=`:
 
 ~~~
-numpy.loadtxt('wavesmonthly.csv', delimiter=',')
+numpy.loadtxt('reshaped_data.csv', delimiter=' ')
 ~~~
 {: .language-python}
 
 ~~~
-array([[ 0.,  0.,  1., ...,  3.,  0.,  0.],
-       [ 0.,  1.,  2., ...,  1.,  0.,  1.],
-       [ 0.,  1.,  1., ...,  2.,  1.,  1.],
+array([[3.788, 3.768, 4.774, 2.818, 2.734, 2.086, 2.066, 2.236, 3.322,
+        3.512, 4.348, 4.628],
+       [3.666, 4.326, 3.522, 3.18 , 1.954, 1.72 , 1.86 , 1.95 , 3.11 ,
+        3.78 , 3.474, 5.28 ],
+       [5.068, 4.954, 3.77 , 2.402, 2.166, 2.084, 2.246, 2.228, 2.634,
+        4.41 , 4.342, 3.28 ],
        ...,
-       [ 0.,  1.,  1., ...,  1.,  1.,  1.],
-       [ 0.,  0.,  0., ...,  0.,  2.,  0.],
-       [ 0.,  0.,  1., ...,  1.,  1.,  0.]])
+      [4.27 , 4.09 , 3.696, 3.302, 2.502, 1.772, 2.016, 2.172, 3.034,
+        3.462, 3.856, 5.76 ],
+       [4.294, 3.794, 4.646, 3.212, 2.226, 1.558, 1.894, 2.092, 2.58 ,
+        3.87 , 3.108, 6.044],
+       [6.488, 5.954, 4.26 , 5.838, 4.882, 3.678, 3.308, 2.786, 2.71 ,
+        3.046, 4.622, 5.048]])
 ~~~
 {: .output}
 
 but we still need to say `delimiter=`:
 
 ~~~
-numpy.loadtxt('wavesmonthly.csv', ',')
+numpy.loadtxt('reshaped_data.csv', ' ')
 ~~~
 {: .language-python}
 
@@ -655,7 +660,7 @@ and eight others that do.
 If we call the function like this:
 
 ~~~
-numpy.loadtxt('wavesmonthly.csv', ',')
+numpy.loadtxt('reshaped_data.csv', ',')
 ~~~
 {: .language-python}
 

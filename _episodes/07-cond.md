@@ -153,10 +153,13 @@ Now that we've seen how conditionals work,
 we can use them to look for thresholds in our wave data.
 We are about to use functions provided by the `numpy` module again.
 Therefore, if you're working in a new Python session, make sure to load the
-module with:
+module, and load and reshape one of the data files:
 
 ~~~
 import numpy
+
+data = numpy.loadtxt(fname = "waves_80s.csv", delimiter=",")
+data = numpy.reshape(data[:,2], [10,12])
 ~~~
 {: .language-python}
 
