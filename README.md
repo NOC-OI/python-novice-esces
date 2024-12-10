@@ -21,7 +21,7 @@ how it is better to automate analysis using functions instead of repeating analy
 steps manually.
 
 The rendered version of the lesson is available at:
-<https://edcarp.github.io/python-novice-esces/>.
+<https://noc-oi.github.io/python-novice-esces/>.
 
 This lesson is derived from the [Analaysis of Inflammation Data lesson](inflammation_lesson). [Neil Chue Hong](npch), [Chris Wood](chris_wood), [Lucy Bricheno](lucy_b), and [Daniel Barker](daniel_b) were awarded a [NERC Advanced Short Training Course Grant](nerc_grant) to run Software Carpentry Courses specifically for
 NERC domain scientists, to include providing domain-specific examples. The wave-height data was taken from. Bricheno & Wolf (2018) 'Future wave conditions of Europe, in response to high‐end climate change scenarios.' Journal of Geophysical Research: Oceans.
@@ -39,14 +39,8 @@ NERC domain scientists, to include providing domain-specific examples. The wave-
 | 6 | [Analyzing Data from Multiple Files][episode06] | 20 | How can I do the same operations on many different files? |
 | 7 | [Making Choices][episode07] | 30 | How can my programs do different things based on data values? |
 | 8 | [Creating Functions][episode08] | 30 | How can I define new functions?<br>What’s the difference between defining and calling a function?<br>What happens when I call a function? |
-| 9 | [Errors and Exceptions][episode09] | 30 | How does Python report errors?<br>How can I handle errors in Python programs? |
-|10 | [Defensive Programming][episode10] | 30 | How can I make my programs more reliable? |
-|11 | [Debugging][episode11] | 30 | How can I debug my program? |
-|12 | [Command-Line Programs][episode12] | 30 | How can I write Python programs that will work like Unix command-line tools? |
-
 
 ## Contributing
-[![Travis Build Status][travis_svg]][travis_url]
 
 We welcome all contributions to improve the lesson!
 Maintainers will do their best to help you if you have any questions, concerns,
@@ -104,20 +98,14 @@ industry and government. More information can be found [here][cp-about].
 [slack_heroku_invite]: https://swc-slack-invite.herokuapp.com
 [slack_channel_status]: https://img.shields.io/badge/Slack_Channel-swc--py--inflammation-E01563.svg
 [slack_channel_url]: https://swcarpentry.slack.com/messages/C9Y0L6MF0
-[travis_svg]: https://travis-ci.org/swcarpentry/python-novice-inflammation.svg?branch=gh-pages
-[travis_url]: https://travis-ci.org/swcarpentry/python-novice-inflammation
-[episode01]: https://edcarp.github.io/python-novice-esces/01-intro/index.html
-[episode02]: https://edcarp.github.io/python-novice-esces/02-numpy/index.html
-[episode03]: https://edcarp.github.io/python-novice-esces/03-matplotlib/index.html
-[episode04]: https://edcarp.github.io/python-novice-esces/04-lists/index.html
-[episode05]: https://edcarp.github.io/python-novice-esces/05-loop/index.html
-[episode06]: https://edcarp.github.io/python-novice-esces/06-files/index.html
-[episode07]: https://edcarp.github.io/python-novice-esces/07-cond/index.html
-[episode08]: https://edcarp.github.io/python-novice-esces/08-func/index.html
-[episode09]: https://edcarp.github.io/python-novice-esces/09-errors/index.html
-[episode10]: https://edcarp.github.io/python-novice-esces/10-defensive/index.html
-[episode11]: https://edcarp.github.io/python-novice-esces/11-debugging/index.html
-[episode12]: https://edcarp.github.io/python-novice-esces/12-cmdline/index.html
+[episode01]: https://noc-oi.github.io/python-novice-esces/01-intro/index.html
+[episode02]: https://noc-oi.github.io/python-novice-esces/02-numpy/index.html
+[episode03]: https://noc-oi.github.io/python-novice-esces/03-matplotlib/index.html
+[episode04]: https://noc-oi.github.io/python-novice-esces/04-lists/index.html
+[episode05]: https://noc-oi.github.io/python-novice-esces/05-loop/index.html
+[episode06]: https://noc-oi.github.io/python-novice-esces/06-files/index.html
+[episode07]: https://noc-oi.github.io/python-novice-esces/07-cond/index.html
+[episode08]: https://noc-oi.github.io/python-novice-esces/08-func/index.html
 [community-initiatives]: https://communityin.org
 [cp-about]: https://carpentries.org/about
 [swc-about]: https://software-carpentry.org/about/
