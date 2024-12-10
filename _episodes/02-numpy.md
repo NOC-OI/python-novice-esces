@@ -331,6 +331,101 @@ data from first year is:
 ~~~
 {: .output}
 
+> ## Slicing Strings
+>
+> A section of an array is called a [slice]({{ page.root }}/reference.html#slice).
+> We can take slices of character strings as well:
+>
+> ~~~
+> element = 'oxygen'
+> print('first three characters:', element[0:3])
+> print('last three characters:', element[3:6])
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> first three characters: oxy
+> last three characters: gen
+> ~~~
+> {: .output}
+>
+> What is the value of `element[:4]`?
+> What about `element[4:]`?
+> Or `element[:]`?
+>
+> > ## Solution
+> > ~~~
+> > oxyg
+> > en
+> > oxygen
+> > ~~~
+> > {: .output}
+> {: .solution}
+>
+> What is `element[-1]`?
+> What is `element[-2]`?
+>
+> > ## Solution
+> > ~~~
+> > n
+> > e
+> > ~~~
+> > {: .output}
+> {: .solution}
+>
+> Given those answers,
+> explain what `element[1:-1]` does.
+>
+> > ## Solution
+> > Creates a substring from index 1 up to (not including) the final index,
+> > effectively removing the first and last letters from 'oxygen'
+> {: .solution}
+>
+> How can we rewrite the slice for getting the last three characters of `element`,
+> so that it works even if we assign a different string to `element`?
+> Test your solution with the following strings: `carpentry`, `clone`, `hi`.
+>
+> > ## Solution
+> > ~~~
+> > element = 'oxygen'
+> > print('last three characters:', element[-3:])
+> > element = 'carpentry'
+> > print('last three characters:', element[-3:])
+> > element = 'clone'
+> > print('last three characters:', element[-3:])
+> > element = 'hi'
+> > print('last three characters:', element[-3:])
+> > ~~~
+> > {: .language-python}
+> > ~~~
+> > last three characters: gen
+> > last three characters: try
+> > last three characters: one
+> > last three characters: hi
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+> ## Thin Slices
+>
+> The expression `element[3:3]` produces an
+> [empty string]({{ page.root }}/reference.html#empty-string),
+> i.e., a string that contains no characters.
+> If `data` holds our array of wave data,
+> what does `data[3:3, 4:4]` produce?
+> What about `data[3:3, :]`?
+>
+> > ## Solution
+> > ~~~
+> > array([], shape=(0, 0), dtype=float64)
+> > array([], shape=(0, 3), dtype=float64)
+> > ~~~
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
+
 ## Analyzing data
 
 NumPy has several useful functions that take an array as input to perform operations on its values.
@@ -618,99 +713,6 @@ numpy.savetxt("reshaped_data.csv", reshaped_data, delimiter=',')
 {: .python}
 
 
-> ## Slicing Strings
->
-> A section of an array is called a [slice]({{ page.root }}/reference.html#slice).
-> We can take slices of character strings as well:
->
-> ~~~
-> element = 'oxygen'
-> print('first three characters:', element[0:3])
-> print('last three characters:', element[3:6])
-> ~~~
-> {: .language-python}
->
-> ~~~
-> first three characters: oxy
-> last three characters: gen
-> ~~~
-> {: .output}
->
-> What is the value of `element[:4]`?
-> What about `element[4:]`?
-> Or `element[:]`?
->
-> > ## Solution
-> > ~~~
-> > oxyg
-> > en
-> > oxygen
-> > ~~~
-> > {: .output}
-> {: .solution}
->
-> What is `element[-1]`?
-> What is `element[-2]`?
->
-> > ## Solution
-> > ~~~
-> > n
-> > e
-> > ~~~
-> > {: .output}
-> {: .solution}
->
-> Given those answers,
-> explain what `element[1:-1]` does.
->
-> > ## Solution
-> > Creates a substring from index 1 up to (not including) the final index,
-> > effectively removing the first and last letters from 'oxygen'
-> {: .solution}
->
-> How can we rewrite the slice for getting the last three characters of `element`,
-> so that it works even if we assign a different string to `element`?
-> Test your solution with the following strings: `carpentry`, `clone`, `hi`.
->
-> > ## Solution
-> > ~~~
-> > element = 'oxygen'
-> > print('last three characters:', element[-3:])
-> > element = 'carpentry'
-> > print('last three characters:', element[-3:])
-> > element = 'clone'
-> > print('last three characters:', element[-3:])
-> > element = 'hi'
-> > print('last three characters:', element[-3:])
-> > ~~~
-> > {: .language-python}
-> > ~~~
-> > last three characters: gen
-> > last three characters: try
-> > last three characters: one
-> > last three characters: hi
-> > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
-
-> ## Thin Slices
->
-> The expression `element[3:3]` produces an
-> [empty string]({{ page.root }}/reference.html#empty-string),
-> i.e., a string that contains no characters.
-> If `data` holds our array of wave data,
-> what does `data[3:3, 4:4]` produce?
-> What about `data[3:3, :]`?
->
-> > ## Solution
-> > ~~~
-> > array([], shape=(0, 0), dtype=float64)
-> > array([], shape=(0, 3), dtype=float64)
-> > ~~~
-> > {: .output}
-> {: .solution}
-{: .challenge}
 
 > ## Stacking Arrays
 >
