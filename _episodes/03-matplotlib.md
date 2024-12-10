@@ -50,6 +50,9 @@ import the `pyplot` module from `matplotlib` and use two of its functions to cre
 {: .prereq}
 
 
+Now let's use the Matplotlib library to plot this data. We'll need to import from the `matplotlib.pyplot` library. We can then use the `imshow` function to plot this data.
+In some versions of Python we'll need to call the `show` function to display the graph. This will plot a heatmap of our data.
+
 ~~~
 import matplotlib.pyplot
 image = matplotlib.pyplot.imshow(data)
@@ -62,7 +65,7 @@ matplotlib.pyplot.show()
 Each row in the heat map corresponds to a year in the dataset, and each column corresponds to a month.  Blue pixels in this heat map represent low values, while
 yellow pixels represent high values. We can see low blue values in the middle (summer) months, and higher waves at the start and end of the year. This demonstrates that there is a seasonal cycle present. With calm summers bringing lower waves, and windy winters generating big waves. There are still differences year to year, with some stormier summers and calmer winters.
 
-Now let's take a look at the average wave-height per month over time:
+Now let's take a look at the average wave-height per month over time. Here we'll used the `plot` function to plot a line graph.
 
 ~~~
 ave_waveheight = numpy.mean(data, axis=0)
@@ -78,9 +81,12 @@ This is a good way to smooth out variability, and see what is called a 'climatol
 Here, we have put the average wave heights per month across all years in the array
 `ave_waveheight`, then asked `matplotlib.pyplot` to create and display a line graph of those
 values.  The result is a smooth seasonal cycle, with a maximum in month 0 (January) and minimum in month 6 (July). 
-But a good data scientist doesn't just consider the average of a dataset, so let's have a look at two other statistics:
+But a good data scientist doesn't just consider the average of a dataset, so let's have a look at the minimum and maximum too. It's good practice to add
+axes labels to our graphs, these can be done with the `xlabel` and `ylabel` functions in `matplolib.pyplot`.
 
 ~~~
+matplotlib.pyplot.ylabel("Max Wave Height (metres)")
+matplotlib.pyplot.xlabel("Month")
 max_plot = matplotlib.pyplot.plot(numpy.max(data, axis=0))
 matplotlib.pyplot.show()
 ~~~
@@ -89,6 +95,8 @@ matplotlib.pyplot.show()
 ![A line graph showing the maximum wave height per month over a 37 year period.](../fig/monthly_wavedata-max.png)
 
 ~~~
+matplotlib.pyplot.ylabel("Min Wave Height (metres)")
+matplotlib.pyplot.xlabel("Month")
 min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 matplotlib.pyplot.show()
 ~~~
@@ -111,7 +119,7 @@ its `add_subplot` [method]({{ page.root }}/reference.html#method). The `add_subp
 refers to the total number of subplot columns, and the final parameter denotes which subplot
 your variable is referencing (left-to-right, top-to-bottom). Each subplot is stored in a
 different variable (`axes1`, `axes2`, `axes3`). Once a subplot is created, the axes can
-be titled using the `set_xlabel()` command (or `set_ylabel()`).
+be titled using the `set_xlabel()` command (or `set_ylabel()`), note these are different to the `xlabel` and `ylabel` functions used by `matplot.pyplot`.
 Let's create three new plots, side by side, this time showing within each of the 37 years of the dataset - notice how we now use `axis=1` in our calls to the summary statistic functions:
 
 ~~~
@@ -341,6 +349,8 @@ print(type(globaldata))
 We can use Matplotlib to display this data set as a world map. The data go from -90 degrees (south pole) to +90 degrees (north pole) in the y direction. In the x-direction the data go from 0 to 360 degrees East, starting at the Greenwich meridian. The white areas are land, because we have no data there to plot.
 
 ~~~
+matplotlib.pyplot.xlabel("Longitude")
+matplotlib.pyplot.ylabel("Latitude")
 matplotlib.pyplot.imshow(globaldata["hs_avg"][0], extent=[0,360,-90,90], origin='lower')
 matplotlib.pyplot.show()
 ~~~
@@ -362,6 +372,8 @@ We can also add a colour bar to help describe the figure, with a little more cod
 ~~~
 fig = matplotlib.pyplot.figure(figsize=(12.0,4.0))
 ax = matplotlib.pyplot.gca()
+ax.set_xlabel("Longitude")
+ax.set_ylabel("Latitude")
 im = ax.imshow(globaldata["hs_avg"][0], extent=[0,360,-90,90], origin='lower')
 cbar = fig.colorbar(im, ax=ax, location="right", pad=0.02)
 matplotlib.pyplot.show()
