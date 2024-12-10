@@ -23,6 +23,9 @@ list[2:9]), in the same way as strings and arrays."
 In the previous episode, we analyzed a single file of wave height data. However we might 
 need to process multiple files in future.
 
+There are four decadal CSV files for the 1980s, 1990s, 2000s, and 2010s. Before we can analyse these,
+we need to learn how to store an arbitary number of items in a list.
+
 The natural first step is to collect the names of all the files that we have to process. In Python,
 a list is a way to store multiple values together. In this episode, we will learn how to store
 multiple values in a list as well as how to work with lists.
@@ -180,16 +183,6 @@ does not.
 > index operations shown in the image:
 >
 > ~~~
-> print([x[0]])
-> ~~~
-> {: .language-python}
->
-> ~~~
-> [['pepper', 'zucchini', 'onion']]
-> ~~~
-> {: .output}
->
-> ~~~
 > print(x[0])
 > ~~~
 > {: .language-python}
@@ -206,6 +199,18 @@ does not.
 >
 > ~~~
 > 'pepper'
+> ~~~
+> {: .output}
+>
+> It's also possible to explicitely return a list, either in a print statement or to save in a variable:
+>
+> ~~~
+> print([x[0]])
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> [['pepper', 'zucchini', 'onion']]
 > ~~~
 > {: .output}
 >

@@ -811,7 +811,7 @@ numpy.savetxt("reshaped_data.csv", reshaped_data, delimiter=',')
 >
 > The `numpy.diff()` function takes an array and returns the differences
 > between two successive values. Let's use it to examine the changes
-> each day across the first 6 months of waves in year 3 from our dataset.
+> each day across the first 6 months of waves in year 4 from our dataset.
 >
 > ~~~
 > year4 = reshaped_data[3, :]
