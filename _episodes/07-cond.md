@@ -33,9 +33,9 @@ We can ask Python to take different actions, depending on a condition, with an `
 ~~~
 num = 37
 if num > 100:
-    print('greater')
+    print("greater")
 else:
-    print('not greater')
+    print("not greater")
 print('done')
 ~~~
 {: .language-python}
@@ -64,7 +64,7 @@ Python simply does nothing if the test is false:
 num = 53
 print('before conditional...')
 if num > 100:
-    print(num, 'is greater than 100')
+    print(num, "is greater than 100")
 print('...after conditional')
 ~~~
 {: .language-python}
@@ -83,11 +83,11 @@ The following Python code uses `elif` to print the sign of a number.
 num = -3
 
 if num > 0:
-    print(num, 'is positive')
+    print(num, "is positive")
 elif num == 0:
-    print(num, 'is zero')
+    print(num, "is zero")
 else:
-    print(num, 'is negative')
+    print(num, "is negative")
 ~~~
 {: .language-python}
 
@@ -117,9 +117,9 @@ We can also combine tests using `and` and `or`.
 
 ~~~
 if (1 > 0) and (-1 >= 0):
-    print('both parts are true')
+    print("both parts are true")
 else:
-    print('at least one part is false')
+    print("at least one part is false")
 ~~~
 {: .language-python}
 
@@ -132,7 +132,7 @@ while `or` is true if at least one part is true:
 
 ~~~
 if (1 < 0) or (1 >= 0):
-    print('at least one test is true')
+    print("at least one test is true")
 ~~~
 {: .language-python}
 
@@ -290,11 +290,11 @@ freeing us from having to manually examine every plot for features we've seen be
 >
 > ~~~
 > if 4 > 5:
->     print('A')
+>     print("A")
 > elif 4 == 5:
->     print('B')
+>     print("B")
 > elif 4 < 5:
->     print('C')
+>     print("C")
 > ~~~
 > {: .language-python}
 >
@@ -321,17 +321,17 @@ freeing us from having to manually examine every plot for features we've seen be
 >
 > ~~~
 > if '':
->     print('empty string is true')
+>     print("empty string is true")
 > if 'word':
->     print('word is true')
+>     print("word is true")
 > if []:
->     print('empty list is true')
+>     print("empty list is true")
 > if [1, 2, 3]:
->     print('non-empty list is true')
+>     print("non-empty list is true")
 > if 0:
->     print('zero is true')
+>     print("zero is true")
 > if 1:
->     print('one is true')
+>     print("one is true")
 > ~~~
 > {: .language-python}
 {: .challenge}
@@ -346,11 +346,11 @@ freeing us from having to manually examine every plot for features we've seen be
 >
 > ~~~
 > if not '':
->     print('empty string is not true')
+>     print("empty string is not true")
 > if not 'word':
->     print('word is not true')
+>     print("word is not true")
 > if not not True:
->     print('not not True is true')
+>     print("not not True is true")
 > ~~~
 > {: .language-python}
 {: .challenge}
@@ -381,9 +381,9 @@ freeing us from having to manually examine every plot for features we've seen be
 > > b = 5.1
 > >
 > > if abs(a - b) <= 0.1 * abs(b):
-> >     print('True')
+> >     print("True")
 > > else:
-> >     print('False')
+> >     print("False")
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -522,9 +522,9 @@ freeing us from having to manually examine every plot for features we've seen be
 > >     else:
 > >         other_files.append(filename)
 > >
-> > print('csv_files:', csv_files)
-> > print('nc_files:', nc_files)
-> > print('other_files:', other_files)
+> > print("csv_files:", csv_files)
+> > print("nc_files:", nc_files)
+> > print("other_files:", other_files)
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -547,7 +547,7 @@ freeing us from having to manually examine every plot for features we've seen be
 > >     if char in vowels:
 > >         count += 1
 > >
-> > print('The number of vowels in this string is ' + str(count))
+> > print("The number of vowels in this string is " + str(count))
 > > ~~~
 > > {: .language-python}
 > {: .solution}
